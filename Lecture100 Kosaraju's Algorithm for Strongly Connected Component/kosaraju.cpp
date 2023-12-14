@@ -36,7 +36,6 @@ int stronglyConnectedComponents(int v, vector<vector<int>> &edges)
 	stack<int> st;
 
 	for(int i=0; i<v; i++){
-		vis[i] = 0;
 		if(!vis[i]){
 			dfs(i, vis, st, adj);
 		}
@@ -45,6 +44,7 @@ int stronglyConnectedComponents(int v, vector<vector<int>> &edges)
     //create transpose graph
 	unordered_map<int,list<int>> transpose;
 	for(int i=0; i<v; i++){
+		vis[i] = 0;
 		for(auto neighbour : adj[i]){
 			transpose[neighbour].push_back(i);
 		}
