@@ -63,7 +63,7 @@ int solveTabu(int n, int a[]){
     }
 
 
-Space Optimization   Sc=O(1) TC=O(n*n)
+Space Optimization   Sc=O(n) TC=O(n*n)
 int solveTabu(int n, int a[]){
         vector<int> curr(n+1, 0);
         vector<int> next(n+1, 0);
