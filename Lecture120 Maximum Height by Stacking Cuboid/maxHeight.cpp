@@ -1,4 +1,7 @@
-bool check(vector<int>base, vector<int> newBox){
+TC = O(n*log(n))
+SC = O(1)
+
+bool check(vector<int>base, vector<int> newBox){     
         if(newBox[0] <= base[0] && newBox[1] <= base[1] && newBox[2] <= base[2]){
             return true;
         }
