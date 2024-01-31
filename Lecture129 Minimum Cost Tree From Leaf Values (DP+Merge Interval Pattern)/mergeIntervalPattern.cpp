@@ -89,4 +89,36 @@ int mctFromLeafValues(vector<int>& arr) {
   return solveTabu(arr, maxi);
 }
 
+
+Another solution
+int solve(vector<int>&arr,int start,int end,  vector<vector<int>>&dp)
+    {
+        if(start >= end) return 0;
+
+        if(dp[start][end] != -1) return dp[i][j];
+
+        int ans=INT_MAX;
+        for(int k=start; k<end; k++)
+        {
+            //left Partition
+            int left=solve(arr,start,k,dp);
+			//Right Partion
+            int right=solve(arr,k+1,end,dp);
+			//maximum value in left partion
+            int max_left=*max_element(arr.begin()+start, arr.begin()+k+1);
+			//maximum value in right partion.
+            int max_right=*max_element(arr.begin()+k+1, arr.begin()+end+1);
+			// As we to find temprorary answer.
+            int temp=left+right+max_left*max_right;
+			//Minum of all answer
+            ans=min(ans,temp);
+        }
+        return dp[i][j]=ans;
+    }
+    int mctFromLeafValues(vector<int>& arr) {
+        vector<vector<int>>dp(arr.size()+1,vector<int>(arr.size()+1,-1));
+        return solve(arr,0,arr.size()-1,dp);
+    }
+
+
 Space Opti is not possible
