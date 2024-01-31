@@ -120,5 +120,22 @@ int solve(vector<int>&arr,int start,int end,  vector<vector<int>>&dp)
         return solve(arr,0,arr.size()-1,dp);
     }
 
+Using Stack  TC = SC = O(n)
+int mctFromLeafValues(vector<int>& arr) {
+        int res = 0;
+        vector<int> stack = {INT_MAX};
+        for (int a : arr) {
+            while (stack.back() <= a) {
+                int mid = stack.back();
+                stack.pop_back();
+                res += mid * min(stack.back(), a);
+            }
+            stack.push_back(a);
+        }
+        for (int i = 2; i < stack.size(); ++i) {
+            res += stack[i] * stack[i - 1];
+        }
+        return res;
+}
 
 Space Opti is not possible
