@@ -13,7 +13,7 @@ int solve(int start, int end){
         return solve(1, n);
     }
 
-Recursion + Memo
+Recursion + Memo   TC=SC=O(n*n)
 int solveMemo(int start, int end, vector<vector<int>> &dp){
         if(start >= end){
             return 0;
@@ -33,7 +33,7 @@ int solveMemo(int start, int end, vector<vector<int>> &dp){
     }  
 
 
-Recursion + Tabu
+Recursion + Tabu   TC=SC=O(n*n)
 int solveTabu(int n){
         vector<vector<int>> dp(n+2, vector<int>(n+2, 0));
         for(int start=n; start>=1; start--){
