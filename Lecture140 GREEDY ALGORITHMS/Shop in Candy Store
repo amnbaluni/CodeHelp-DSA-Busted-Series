@@ -1,0 +1,32 @@
+TC = O(nlog(n))
+SC = O(1)
+
+// Function to calculate minimum cost.
+#include <algorithm>
+long long minimumCost(vector<int> &cost, int n, int k)
+{
+   sort(cost.begin(), cost.end());
+   long long miniCost = 0;
+   long long buy = 0;
+   long long free = n-1;
+   while(buy <= free){
+       miniCost = miniCost + cost[buy];
+       buy++;
+       free = free - k;
+   }
+   return miniCost;
+}
+
+// Function to calculate maximum cost.
+long long maximumCost(vector<int> &cost, int n, int k)
+{
+   long long maxCost = 0;
+   long long buy = n-1;
+   long long free = 0;
+   while(free <= buy){
+       maxCost = maxCost + cost[buy];
+       buy--;
+       free = free + k;
+   }
+   return maxCost;
+}
