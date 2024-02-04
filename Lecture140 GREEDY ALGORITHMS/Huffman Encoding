@@ -1,3 +1,6 @@
+TC = O(nlog(n))
+SC = O(n)
+
 class Node {
     public:
        int data;
