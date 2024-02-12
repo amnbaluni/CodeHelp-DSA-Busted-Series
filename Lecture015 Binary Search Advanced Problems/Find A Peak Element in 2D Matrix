@@ -1,0 +1,34 @@
+int maxElement(vector<vector<int>> &g, int n, int m, int col){
+    int index = 0;
+    int maxValue = -1;
+    for(int i=0; i<n; i++){
+        if(g[i][col] > maxValue){
+            maxValue = g[i][col];
+            index = i;
+        }
+    }
+    return index;
+}
+
+vector<int> findPeakGrid(vector<vector<int>> &g){
+    int n = g.size();
+    int m = g[0].size();
+    int low = 0;
+    int high = m-1;
+    while(low <= high){
+        int midColumn = low + (high-low)/2;
+        int maxRowIndex = maxElement(g, n, m, midColumn);
+        int left = midColumn-1>=0 ? g[maxRowIndex][midColumn-1] : -1;
+        int right = midColumn+1<m ? g[maxRowIndex][midColumn+1] : -1;
+        if(g[maxRowIndex][midColumn] > left && g[maxRowIndex][midColumn] > right){
+            return {maxRowIndex, midColumn};
+        }
+        else if(g[maxRowIndex][midColumn] < left){
+           high = midColumn-1;
+        }
+        else{
+            low = midColumn+1;
+        }
+    }
+    return {-1, -1};
+}
