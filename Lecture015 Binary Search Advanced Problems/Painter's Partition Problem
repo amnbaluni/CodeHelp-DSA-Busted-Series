@@ -1,0 +1,33 @@
+int countStudents(vector<int>& boards, int pages){
+    int students = 1;
+    int pagesStudent = 0;
+    for(int i=0; i<boards.size(); i++){
+        if(pagesStudent + boards[i] <= pages){
+            pagesStudent += boards[i];
+        }
+        else{
+            students += 1;
+            pagesStudent = boards[i];
+        }
+    }
+    return students;
+}
+
+int findLargestMinDistance(vector<int> &boards, int k)
+{
+    //highest element in arr
+    int low = *max_element(boards.begin(), boards.end());
+    //sum of all elements in arr
+    int high = accumulate(boards.begin(), boards.end(), 0);
+    while(low <= high){
+        int mid = low + (high-low)/2;
+        int numberOfStudents = countStudents(boards, mid);
+        if(numberOfStudents > k){
+            low = mid+1;
+        }
+        else{
+            high = mid-1;
+        }
+    }
+    return low;
+}
