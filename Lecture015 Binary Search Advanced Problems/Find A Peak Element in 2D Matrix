@@ -1,3 +1,6 @@
+TC = O(n*log(m))
+Sc = O(1)
+
 int maxElement(vector<vector<int>> &g, int n, int m, int col){
     int index = 0;
     int maxValue = -1;
