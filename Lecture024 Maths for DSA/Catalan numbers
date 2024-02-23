@@ -1,0 +1,46 @@
+Algorithm
+1. We will create a function named solve, which will accept a single parameter, and that will be N.
+2. If the value of N becomes less than 1, then we will return 1; this will be our base case.
+3. Now, we will loop from 1 to N and add the result in the variable at each iteration.
+4. The formula to calculate the result at each iteration would be solve(i) * solve(n - i - 1).
+5. In the end, we will return the variable to store the result.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int solve(int n)
+{
+    // Base case
+    if (n <= 1)
+        return 1;
+
+    
+    int nthCatalan = 0;
+
+     // Applying the formula to find out the nth catalan number
+    for (int i = 0; i < n; i++)
+    {
+        nthCatalan += solve(i) * solve(n - i - 1);
+    }
+
+    return nthCatalan;
+}
+
+// Driver function.
+int main()
+
+{
+    int n = 8;
+
+    cout << "The first " << n << " Catalan Numbers are: ";
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << solve(i) << " ";
+    }
+    cout << endl;
+}
+
+Output
+The first 8 Catalan Numbers are: 1 1 2 5 14 42 132 429 
+
