@@ -1,3 +1,4 @@
+GFG
 bool isSafe(int x, int y, int n, vector<vector<int>>& visited, vector<vector<int>> &m){
         if((x>=0 && x<n) && (y>=0 && y<n) && visited[x][y]==0 && m[x][y]==1){
             return true;
@@ -63,9 +64,66 @@ bool isSafe(int x, int y, int n, vector<vector<int>>& visited, vector<vector<int
                 visited[i][j] = 0;
             }
         }
-        
         string path = "";
         solve(sx, sy, m, n, visited, path, ans);
         sort(ans.begin(), ans.end());
         return ans;
     }
+
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+Codestudio
+#include <bits/stdc++.h>
+void solve(int row, int col, vector<vector<int>> &arr, int n, string &s, vector<string> &ans) {
+  if (row == n - 1 && col == n - 1) {
+    ans.push_back(s);
+    return;
+  }
+  // down
+  if (row != n - 1) {
+    if (arr[row + 1][col] == 1) {
+      s.push_back('D');
+      arr[row][col] = 0;
+      solve(row + 1, col, arr, n, s, ans);
+      s.pop_back();
+      arr[row][col] = 1;
+    }
+  }
+  // left
+  if (col != 0) {
+    if (arr[row][col - 1] == 1) {
+      s.push_back('L');
+      arr[row][col] = 0;
+      solve(row, col - 1, arr, n, s, ans);
+      s.pop_back();
+      arr[row][col] = 1;
+    }
+  }
+  // right
+  if (col != n - 1) {
+    if (arr[row][col + 1] == 1) {
+      s.push_back('R');
+      arr[row][col] = 0;
+      solve(row, col + 1, arr, n, s, ans);
+      s.pop_back();
+      arr[row][col] = 1;
+    }
+  }
+  // UP
+  if (row != 0) {
+    if (arr[row - 1][col] == 1) {
+      s.push_back('U');
+      arr[row][col] = 0;
+      solve(row - 1, col, arr, n, s, ans);
+      s.pop_back();
+      arr[row][col] = 1;
+    }
+  }
+  return;
+}
+vector<string> searchMaze(vector<vector<int>> &arr, int n) {
+  vector<string> ans;
+  string s;
+  if (arr[0][0] == 1)
+    solve(0, 0, arr, n, s, ans);
+  return ans;
+}
