@@ -37,3 +37,12 @@ Approach 2 - Recursive method
         return prev;
     }
 };
+
+Approach 3
+ListNode* reverseList(ListNode* head) {
+        if(head==NULL || head->next==NULL) return head;
+        ListNode* newHead = reverseList(head->next);
+        head->next->next = head;
+        head->next = NULL;
+        return newHead;
+    }
