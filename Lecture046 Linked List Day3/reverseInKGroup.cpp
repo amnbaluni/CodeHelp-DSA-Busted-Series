@@ -51,3 +51,53 @@ Node* kReverse(Node* head, int k) {
     // step3: return head of reverse list
     return prev;
 }
+
+************************************************************************************************************************************
+
+ListNode* getkthNode(ListNode* temp, int k){
+        k = k-1;
+        while(temp!=NULL && k!=0){
+            k--;
+            temp = temp->next;
+        }
+        return temp;
+    }
+    ListNode* reverse(ListNode* head){
+        if (head == NULL || head->next == NULL) {
+            return head;
+        }
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        ListNode* forward = NULL;
+        while(curr != NULL){
+            forward = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = forward;
+        }
+        return prev;
+    }
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* temp = head;
+        ListNode* prevLast = NULL;
+        while(temp != NULL){
+            ListNode* kthNode = getkthNode(temp, k);
+            if(kthNode==NULL){
+                if(prevLast!=NULL){
+                    prevLast->next = temp;
+                }
+                break;
+            }
+            ListNode* nextNode = kthNode->next;
+            kthNode->next = NULL;
+            reverse(temp);
+            if(temp==head){
+                head = kthNode;
+            }else{
+                prevLast->next = kthNode;
+            }
+            prevLast = temp;
+            temp = nextNode;
+        }
+        return head;
+    }
