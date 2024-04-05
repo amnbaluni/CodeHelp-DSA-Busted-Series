@@ -82,3 +82,26 @@ class Solution
         return ans;
     }
 };
+
+*********************** Leetcode 2 **********************
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode* dummyNode = new ListNode(0);
+        ListNode* temp = dummyNode;
+        int carry = 0, total = 0;
+        while(l1!=NULL || l2!=NULL || carry!=0){
+            total = carry;
+            if(l1!=NULL){
+                total += l1->val;
+                l1 = l1->next;
+            }
+            if(l2!=NULL){
+                total += l2->val;
+                l2 = l2->next;
+            }
+            int num = total%10;
+            carry = total/10;
+            dummyNode->next = new ListNode(num);
+            dummyNode = dummyNode->next;
+        }
+        return temp->next;
+    }    
