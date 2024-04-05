@@ -60,3 +60,37 @@ class Solution{
         return true;
     }
 };
+
+*************************** Leetcode 234 **********************************
+  bool isPalindrome(ListNode* head) {
+        // vector<int> arr;
+        // while(head!=NULL){
+        //     arr.push_back(head->val);
+        //     head = head->next;
+        // }
+        // int n = arr.size();
+        // int start = 0;
+        // int end = n-1;
+        // while(start<end){
+        //     if(arr[start]!=arr[end]){
+        //         return false;
+        //     }
+        //     start++;
+        //     end--;
+        // }
+        // return true;
+
+
+        stack<int> st;
+        ListNode* temp = head;
+        while(temp){
+            st.push(temp->val);
+            temp = temp->next;
+        }
+        temp = head;
+        while(temp && temp->val == st.top()){
+            st.pop();
+            temp = temp->next;
+        }
+        return temp==NULL;
+    }
