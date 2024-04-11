@@ -60,3 +60,52 @@ public:
         return area;
     }
 };
+
+***************************************************************************8
+
+class Solution {
+public:
+vector<int> prevElements(vector<int>& heights){
+        stack<int> st;
+        st.push(-1);
+        vector<int> ans(heights.size());
+        for(int i=0; i<heights.size(); i++){
+            int curr = heights[i];
+            while(st.top()!=-1 && heights[st.top()]>=curr){
+                st.pop();
+            }
+            ans[i] = st.top();
+            st.push(i);
+        }
+        return ans;
+    }
+    vector<int> nextElements(vector<int>& heights){
+        stack<int> st;
+        st.push(-1);
+        vector<int> ans(heights.size());
+        for(int i=heights.size()-1; i>=0; i--){
+            int curr = heights[i];
+            while(st.top()!=-1 && heights[st.top()]>=curr){
+                st.pop();
+            }
+            ans[i] = st.top();
+            st.push(i);
+        }
+        return ans;
+    }
+    int largestRectangleArea(vector<int>& heights) {
+        vector<int> prev = prevElements(heights);
+        vector<int> next = nextElements(heights);
+        int maxArea = INT_MIN;
+
+        int n = heights.size();
+        for(int i=0; i<n; i++){
+            int l = heights[i];
+            if(next[i] == -1) next[i] = n;
+            int b = next[i]-prev[i]-1;
+            int area = l*b;
+            maxArea = max(maxArea, area);
+        }
+        return maxArea;
+    }
+};    
