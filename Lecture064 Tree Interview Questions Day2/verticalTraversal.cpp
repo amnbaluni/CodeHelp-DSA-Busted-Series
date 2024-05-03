@@ -165,5 +165,54 @@ int main() {
 	return 0;
 }
 
-
   // } Driver Code Ends
+
+
+*******************************Leetcode 987*****************************
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> verticalTraversal(TreeNode* root) {
+        vector<vector<int>> ans;
+        map<int, map<int, multiset<int>>> nodes;
+        queue<pair<TreeNode*, pair<int, int>>> q;   //q -> TreeNode, {vertical, Level}
+        q.push({root, {0,0}});
+        while(!q.empty()){
+            auto front = q.front();
+            q.pop();
+            TreeNode* temp = front.first;
+            int vertical = front.second.first;
+            int level = front.second.second;
+            //insert these values in map
+            nodes[vertical][level].insert(temp->val);
+            //process for left
+            if(temp->left){
+                q.push({temp->left, {vertical-1, level+1}});
+            }
+            //process for right
+            if(temp->right){
+                q.push({temp->right, {vertical+1, level+1}});
+            }
+        }
+
+        //ans vector me daal do
+        for(auto node : nodes){
+            vector<int> col;
+            for(auto s: node.second){
+                col.insert(col.end(), s.second.begin(), s.second.end());
+            }
+            ans.push_back(col);
+        }
+        return ans;
+    }
+};	
