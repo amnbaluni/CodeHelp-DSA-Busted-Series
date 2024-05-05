@@ -1,1 +1,27 @@
-
+void createMap(int in[], map<int, int> &nodeToIndex, int n){
+        for(int i=0; i<n; i++){
+            nodeToIndex[in[i]] = i;
+        }
+    }
+    Node* solve(int in[],int pre[], int &preorderIndex, int inorderStartIndex, int inorderEndIndex, int n,  map<int, int> &nodeToIndex){
+        //base case
+        if(preorderIndex >= n || inorderStartIndex > inorderEndIndex) return NULL;
+        int element = pre[preorderIndex++];
+        Node* root = new Node(element);
+        int pos = nodeToIndex[element];
+        
+        //recursive calls
+        root->left = solve(in, pre, preorderIndex, inorderStartIndex, pos-1, n, nodeToIndex);
+        root->right = solve(in, pre, preorderIndex, pos+1, inorderEndIndex, n, nodeToIndex);
+        
+        return root;
+        
+    }
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        int preorderIndex = 0;
+        map<int, int> nodeToIndex;
+        createMap(in, nodeToIndex, n);
+        Node* ans = solve(in, pre, preorderIndex, 0, n-1, n, nodeToIndex);
+        return ans;
+    }
