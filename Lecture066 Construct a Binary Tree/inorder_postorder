@@ -1,0 +1,28 @@
+void createMap(int in[], map<int, int> &nodeToIndex, int n){
+        for(int i=0; i<n; i++){
+            nodeToIndex[in[i]] = i;
+        }
+    }
+    Node* solve(int in[],int post[], int &postorderIndex, int inorderStartIndex, int inorderEndIndex, int n,  map<int, int> &nodeToIndex){
+        //base case
+        if(postorderIndex < 0 || inorderStartIndex > inorderEndIndex) return NULL;
+        int element = post[postorderIndex--];
+        Node* root = new Node(element);
+        int pos = nodeToIndex[element];
+        
+        //recursive calls
+        root->right = solve(in, post, postorderIndex, pos+1, inorderEndIndex, n, nodeToIndex);
+        root->left = solve(in, post, postorderIndex, inorderStartIndex, pos-1, n, nodeToIndex);
+        
+        return root;
+        
+    }
+
+    //Function to return a tree created from postorder and inoreder traversals.
+    Node *buildTree(int in[], int post[], int n) {
+        int postorderIndex = n-1;
+        map<int, int> nodeToIndex;
+        createMap(in, nodeToIndex, n);
+        Node* ans = solve(in, post, postorderIndex, 0, n-1, n, nodeToIndex);
+        return ans;
+    }
