@@ -106,8 +106,16 @@ class Solution {
     }
   public:
     // Function to return the diameter of a Binary Tree.
-    
-    pair<int,int> diameterFast(Node* root) {
+    int diameter(Node* root){
+       //base case
+       if(root==NULL) return 0;
+       int op1 = diameter(root->left);
+       int op2 = diameter(root->right);
+       int op3 = height(root->left) + 1 + height(root->right);
+       return max(op1, max(op2, op3));
+    }
+    //optimized function
+    pair<int,int> diameterFast(Node* root) {    //<diameter, height>
         //base case
         if(root == NULL) {
             pair<int,int> p = make_pair(0,0);
