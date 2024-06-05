@@ -11,97 +11,68 @@ Node* newNode(int item)
     temp->left = temp->right = NULL;
     return temp;
 }
- 
-// A utility function to do inorder traversal of BST
-void inorder(Node* root)
-{
-    if (root != NULL) {
-        inorder(root->left);
-        printf("%d ", root->key);
-        inorder(root->right);
+
+//Function to find minimum value in a BST
+Node* min_val(Node* root){
+    Node* temp = root;
+    while(temp->left != NULL){
+        temp = temp->left;
     }
+    return temp;
 }
- 
-/* A utility function to insert a new node with given key in
- * BST */
-Node* insert(Node* node, int key)
-{
-    /* If the tree is empty, return a new node */
-    if (node == NULL)
-        return newNode(key);
- 
-    /* Otherwise, recur down the tree */
-    if (key < node->key)
-        node->left = insert(node->left, key);
-    else
-        node->right = insert(node->right, key);
- 
-    /* return the (unchanged) node pointer */
-    return node;
+
+//Function to find maximum value in a BST
+Node* max_val(Node* root){
+    Node* temp = root;
+    while(temp->right != NULL){
+        temp = temp->right;
+    }
+    return temp;
 }
+
  
 /* Given a binary search tree and a key, this function
    deletes the key and returns the new root */
-Node* deleteNode(Node* root, int k)
+Node* deleteNode(Node* root, int val)
 {
-    // Base case
-    if (root == NULL)
-        return root;
- 
-    // Recursive calls for ancestors of
-    // node to be deleted
-    if (root->key > k) {
-        root->left = deleteNode(root->left, k);
+    //base case
+    if(root == NULL){
         return root;
     }
-    else if (root->key < k) {
-        root->right = deleteNode(root->right, k);
-        return root;
-    }
- 
-    // We reach here when root is the node
-    // to be deleted.
- 
-    // If one of the children is empty
-    if (root->left == NULL) {
-        Node* temp = root->right;
-        delete root;
-        return temp;
-    }
-    else if (root->right == NULL) {
-        Node* temp = root->left;
-        delete root;
-        return temp;
-    }
- 
-    // If both children exist
-    else {
- 
-        Node* succParent = root;
- 
-        // Find successor
-        Node* succ = root->right;
-        while (succ->left != NULL) {
-            succParent = succ;
-            succ = succ->left;
+    if(root->data == val){
+        //we will have three cases here
+        //CASE 1 - 0 Child -> delete leaf node
+        if(root->left == NULL && root->right == NULL){
+            delete root;
+            return NULL;
         }
- 
-        // Delete successor.  Since successor
-        // is always left child of its parent
-        // we can safely make successor's right
-        // right child as left of its parent.
-        // If there is no succ, then assign
-        // succ->right to succParent->right
-        if (succParent != root)
-            succParent->left = succ->right;
-        else
-            succParent->right = succ->right;
- 
-        // Copy Successor Data to root
-        root->key = succ->key;
- 
-        // Delete Successor and return root
-        delete succ;
+        //CASE 2 - we have only 1 child
+        if(root->left != NULL && root->right == NULL){   //we have only left child
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        if(root->left == NULL && root->right != NULL){   //we have only right child
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }
+        //CASE 3 - we have 2 child nodes
+        if(root->left != NULL && root->right != NULL){
+            int mini_val = min_val(root)->data;
+            root->data = mini_val;
+            root->right = deleteNode(root->right, mini_val);
+            return root;
+        }
+    }
+    else if(root->data > val){
+        //left wale part me jao
+        root->left = deleteNode(root->data, val);
+        return root;
+    }
+    else(root->data < val){
+        //right wale part me jao
+        root->right = deleteNode(root->data, val);
         return root;
     }
 }
