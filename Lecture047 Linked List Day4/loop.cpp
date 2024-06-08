@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/interview-shuriken-42-detect-and-remove-loop_241049
+
 /*************************************************
     
     class Node {
