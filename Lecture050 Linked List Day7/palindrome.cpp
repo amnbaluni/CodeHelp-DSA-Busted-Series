@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/check-if-linked-list-is-pallindrome/1
+
 class Solution{
   private:
     Node* getMid(Node* head ) {
