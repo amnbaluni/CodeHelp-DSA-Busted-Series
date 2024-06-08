@@ -1,3 +1,4 @@
+https://leetcode.com/problems/power-of-two/description/
 #include<limits.h>
 
 class Solution {
