@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/first-and-last-position-of-an-element-in-sorted-array_1082549
+
 #include<vector>
 using namespace std;
 int firstOcc(vector<int>& arr, int n, int key) {
