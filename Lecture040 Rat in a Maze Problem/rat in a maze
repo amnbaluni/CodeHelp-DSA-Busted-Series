@@ -1,4 +1,5 @@
-GFG
+https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
+
 bool isSafe(int x, int y, int n, vector<vector<int>>& visited, vector<vector<int>> &m){
         if((x>=0 && x<n) && (y>=0 && y<n) && visited[x][y]==0 && m[x][y]==1){
             return true;
