@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/ayush-and-ninja-test_1097574
+
 int countStudents(vector<int>& arr, int pages){
     int students = 1;
     int pagesStudent = 0;
