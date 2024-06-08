@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/intersection-of-2-arrays_1082149
+
 #include<vector>
 using namespace std;
 vector<int> findArrayIntersection(vector<int> &arr1, int n, vector<int> &arr2, int m)
