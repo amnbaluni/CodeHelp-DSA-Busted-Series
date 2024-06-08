@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/aggressive-cows_1082559
+
 bool isPossible(vector<int> &stalls, int k, int mid, int n) {
     
     int cowCount = 1;
