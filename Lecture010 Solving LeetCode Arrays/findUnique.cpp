@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/find-unique_625159
+
 int findUnique(int *arr, int size)
 {
    	int ans = 0;
