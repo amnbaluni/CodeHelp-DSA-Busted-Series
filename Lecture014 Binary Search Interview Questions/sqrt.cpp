@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/square-root_893351
+
 #include<iostream>
 using namespace std;
 
