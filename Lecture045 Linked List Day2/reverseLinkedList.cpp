@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/reverse-the-singly-linked-list_799897
+
 Approach 1 - iterative method
 LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
 {
