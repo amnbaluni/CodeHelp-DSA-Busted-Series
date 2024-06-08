@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/painter's-partition-problem_1089557
+
 int countStudents(vector<int>& boards, int pages){
     int students = 1;
     int pagesStudent = 0;
