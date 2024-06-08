@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/circularly-linked_1070232
+
 bool isCircular(Node *head) {
   if (head == NULL)
     return true; // empty linked list
