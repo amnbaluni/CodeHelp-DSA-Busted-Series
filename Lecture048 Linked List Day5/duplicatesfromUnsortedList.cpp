@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/remove-duplicates-from-unsorted-linked-list_1069331
+
 #include <bits/stdc++.h> 
 /****************************************************************
     Following is the class structure of the Node class:
