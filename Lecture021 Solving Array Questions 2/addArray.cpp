@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/sum-of-two-arrays_893186
+
 vector<int> reverse(vector<int> v) {
     
     int s = 0;
