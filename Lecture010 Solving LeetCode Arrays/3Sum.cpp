@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/triplets-with-given-sum_893028
+
 #include <bits/stdc++.h> 
 #include <set>
 vector<vector<int>> findTriplets(vector<int>arr, int n, int K) {
