@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/subsequences-of-string_985087
+
 #include <bits/stdc++.h> 
 #include <vector>
 vector<string> solve(string &str, string &empty, int len, int index){
