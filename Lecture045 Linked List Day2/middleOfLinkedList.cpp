@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/middle-of-linked-list_973250
+
 Approach 1
 int getLength(Node* head){
     int len = 0;
