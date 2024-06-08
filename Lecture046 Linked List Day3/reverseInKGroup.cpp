@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/reverse-list-in-k-groups_983644
+
 /****************************************************************
     Following is the Linked List node structure
 
