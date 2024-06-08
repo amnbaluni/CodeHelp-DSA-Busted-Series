@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/pair-sum_697295
+
 #include<vector>
 using namespace std;
 vector<vector<int> > pairSum(vector<int> &arr, int s){
