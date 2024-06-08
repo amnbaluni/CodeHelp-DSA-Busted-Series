@@ -1,3 +1,14 @@
+Problem Statement
+String permutations have applications ranging from security and encryption to optimization and analysis. It allows us to solve complex problems and study varied data configurations. An example of a string permutation is given below. In this example, you have to print all the permutations of the string “abc”. So in the output, you will see all 6 permutations of “abc”.
+
+You are given a string ‘str’ consisting of lowercase letters. Your task is to return all permutations in string in any order.
+
+Sample Input
+abc
+
+Sample Output 
+abc acb bac bca cab cba
+
 #include <vector>
 #include <string>
 #include <algorithm>
