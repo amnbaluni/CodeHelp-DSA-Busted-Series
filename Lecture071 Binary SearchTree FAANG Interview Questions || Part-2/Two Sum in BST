@@ -1,0 +1,24 @@
+https://www.naukri.com/code360/problems/two-sum-in-a-bst_1062631
+
+void find_inorder(BinaryTreeNode<int>* root, vector<int> &inorder){
+    if(root == NULL) return;
+    find_inorder(root->left, inorder);
+    inorder.push_back(root->data);
+    find_inorder(root->right, inorder);
+}
+bool twoSumInBST(BinaryTreeNode<int>* root, int target) {
+	vector<int> inorder;
+    find_inorder(root, inorder);
+    int i=0;
+    int j=inorder.size()-1;
+    while(i<j){
+        if(inorder[i] + inorder[j] == target) return true;
+        else if(inorder[i] + inorder[j] < target){
+            i++;
+        }
+        else{
+            j--;
+        }
+    }
+    return false;
+}
