@@ -1,0 +1,32 @@
+https://www.naukri.com/code360/problems/flatten-bst-to-a-sorted-list_1169459
+
+void find_inorder(TreeNode<int>* root, vector<int> &inorder){
+    if(root == NULL) return;
+    find_inorder(root->left, inorder);
+    inorder.push_back(root->data);
+    find_inorder(root->right, inorder);
+}
+
+TreeNode<int>* flatten(TreeNode<int>* root)
+{
+    //1st step
+    vector<int> inorder;
+    find_inorder(root, inorder);
+
+    TreeNode<int>* new_root = new TreeNode<int>(inorder[0]);
+    TreeNode<int>* curr = new_root;
+    
+    //2nd step
+    for(int i=1; i<inorder.size(); i++){
+        TreeNode<int>* temp = new TreeNode<int>(inorder[i]);
+        curr->right = temp;
+        curr->left = NULL;
+        curr = temp;
+    }
+
+    //for last node - 3rd step
+    curr->left = NULL;
+    curr->right = NULL;
+
+    return new_root;     
+}
