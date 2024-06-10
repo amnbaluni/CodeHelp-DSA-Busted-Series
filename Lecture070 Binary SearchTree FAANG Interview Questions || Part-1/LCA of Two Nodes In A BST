@@ -1,0 +1,23 @@
+https://www.naukri.com/code360/problems/lca-in-a-bst_981280
+
+TreeNode *solve(TreeNode *root, TreeNode *P, TreeNode *Q){
+    //base case
+    if(root == NULL) return root;
+
+    //first case
+    if(root->data < P->data && root->data < Q->data){
+        return solve(root->right, P, Q);
+    }
+
+    //second case
+    if(root->data > P->data && root->data > Q->data){
+        return solve(root->left, P, Q);
+    }
+
+    //third case
+    else return root;
+}
+TreeNode *LCAinaBST(TreeNode *root, TreeNode *P, TreeNode *Q)
+{
+   return solve(root, P, Q);
+}
