@@ -1,0 +1,27 @@
+https://www.naukri.com/code360/problems/normal-bst-to-balanced-bst_920472
+
+void find_inorder(TreeNode<int>* root, vector<int> inorder){
+    if(root == NULL) return;
+    find_inorder(root->left, inorder);
+    inorder.push_back(root->data);
+    find_inorder(root->right, inorder);
+}
+
+TreeNode<int>* inorderToBST(int s, int e, vector<int> &inorder){
+   //base case
+   if(s > e) return nullptr;
+
+   int mid = (s+e)/2;
+   TreeNode<int> root = new TreeNode<int>(inorder[mid]);
+
+   root->left = inorderToBST(s, mid-1, inorder);
+   root->right = inorderToBST(mid+1, e, inorder);
+
+   return root;
+}
+TreeNode<int>* balancedBst(TreeNode<int>* root) {
+    vector<int> inorder;
+    find_inorder(root, inorder);
+
+    return inorderToBST(0, inorder.size()-1, inorder);
+}
