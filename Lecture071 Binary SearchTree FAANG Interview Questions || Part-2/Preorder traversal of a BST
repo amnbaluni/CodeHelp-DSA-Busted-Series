@@ -15,5 +15,6 @@ BinaryTreeNode<int>* solve(vector<int> &preorder, int mini, int maxi, int &i){
 BinaryTreeNode<int>* preorderToBST(vector<int> &preorder) {
     int mini = INT_MIN;
     int maxi = INT_MAX;
-    return solve(preorder, mini, maxi, 0);
+    int i=0;
+    return solve(preorder, mini, maxi, i);
 }
