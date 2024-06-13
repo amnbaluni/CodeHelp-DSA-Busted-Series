@@ -1,0 +1,169 @@
+https://www.naukri.com/code360/problems/h_920474
+
+#Approach - 1
+void convert_inorder(TreeNode *root, vector<int> &ans){
+    if (root == NULL)
+        return;
+ 
+    /* first recur on left child */
+    convert_inorder(root->left, ans);
+ 
+    /* then print the data of node */
+    ans.push_back(root->data);
+ 
+    /* now recur on right child */
+    convert_inorder(root->right, ans);
+}
+vector<int> mergeBST(TreeNode *root1, TreeNode *root2)
+{
+    vector<int>inorder1;
+    convert_inorder(root1, inorder1);
+    vector<int>inorder2;
+    convert_inorder(root2, inorder2);
+    //merge and create a sorted array of inorder
+    vector<int>ans;
+    int i=0;
+    int j=0;
+    while(i<inorder1.size() && j<inorder2.size()){
+        if(inorder1[i]<inorder2[j]){
+            ans.push_back(inorder1[i]);
+            i++;
+        }
+        else{
+            ans.push_back(inorder2[j]);
+            j++;
+        }
+    }
+
+    while(i<inorder1.size()){
+        ans.push_back(inorder1[i]);
+        i++;
+    }
+
+    while(j<inorder2.size()){
+        ans.push_back(inorder2[j]);
+        j++;
+    }
+    return ans;  
+}
+
+#Approach 2  
+TC = O(m+n) where m & n are np. of nodes in BST
+SC = O(h1 + h2) where h1 and h2 are heights of BST
+TreeNode* convertIntoSortedDLL(TreeNode *root, TreeNode* &head) {
+    // Base case
+    if (root == NULL) return root;
+
+    // Recursively convert the right subtree
+    convertIntoSortedDLL(root->right, head);
+
+    // Adjust pointers
+    root->right = head;
+    if (head != NULL) {
+        head->left = root;
+    }
+
+    // Move the head pointer to the current node
+    head = root;
+
+    // Recursively convert the left subtree
+    convertIntoSortedDLL(root->left, head);
+
+    return head;
+}
+
+TreeNode* mergeTwoDLL(TreeNode *head1, TreeNode *head2) {
+    TreeNode* head = NULL;
+    TreeNode* tail = NULL;
+
+    while (head1 != NULL && head2 != NULL) {
+        if (head1->data < head2->data) {
+            if (head == NULL) {
+                head = head1;
+                tail = head1;
+                head1 = head1->right;
+            } else {
+                tail->right = head1;
+                head1->left = tail;
+                tail = head1;
+                head1 = head1->right;
+            }
+        } else {
+            if (head == NULL) {
+                head = head2;
+                tail = head2;
+                head2 = head2->right;
+            } else {
+                tail->right = head2;
+                head2->left = tail;
+                tail = head2;
+                head2 = head2->right;
+            }
+        }
+    }
+
+    // Append the remaining nodes of head1
+    while (head1 != NULL) {
+        tail->right = head1;
+        head1->left = tail;
+        tail = head1;
+        head1 = head1->right;
+    }
+
+    // Append the remaining nodes of head2
+    while (head2 != NULL) {
+        tail->right = head2;
+        head2->left = tail;
+        tail = head2;
+        head2 = head2->right;
+    }
+
+    return head;
+}
+
+int cnt_nodes(TreeNode* head) {
+    int cnt = 0;
+    TreeNode* temp = head;
+    while (temp != NULL) {
+        cnt++;
+        temp = temp->right;
+    }
+    return cnt;
+}
+
+TreeNode* sortedLLToBST(TreeNode* &head, int n) {
+    if (n <= 0 || head == NULL) return NULL;
+
+    // Recursively build the left subtree
+    TreeNode* left = sortedLLToBST(head, n / 2);
+
+    // Create the root node
+    TreeNode* root = head;
+    root->left = left;
+
+    // Move head to the next node
+    head = head->right;
+
+    // Recursively build the right subtree
+    root->right = sortedLLToBST(head, n - n / 2 - 1);
+
+    return root;
+}
+
+TreeNode* mergeBST(TreeNode *root1, TreeNode *root2) {
+    // Step 1: Convert BSTs into sorted DLLs
+    TreeNode* head1 = NULL;
+    convertIntoSortedDLL(root1, head1);
+    if (head1 != NULL) head1->left = NULL;
+
+    TreeNode* head2 = NULL;
+    convertIntoSortedDLL(root2, head2);
+    if (head2 != NULL) head2->left = NULL;
+
+    // Step 2: Merge two sorted DLLs into one
+    TreeNode* head = mergeTwoDLL(head1, head2);
+
+    // Step 3: Convert the sorted DLL into a BST
+    int n = cnt_nodes(head);
+    return sortedLLToBST(head, n);
+}
