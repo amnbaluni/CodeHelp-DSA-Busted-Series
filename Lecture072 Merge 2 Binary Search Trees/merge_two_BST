@@ -47,6 +47,8 @@ vector<int> mergeBST(TreeNode *root1, TreeNode *root2)
     return ans;  
 }
 
+**************************************************************************************************************************
+
 #Approach 2  
 TC = O(m+n) where m & n are np. of nodes in BST
 SC = O(h1 + h2) where h1 and h2 are heights of BST
