@@ -1,6 +1,9 @@
+https://www.naukri.com/code360/problems/build-min-heap_1171167
+
 #include <bits/stdc++.h> 
 void heapify(vector<int> &arr, int n, int i){
     int smallest = i;
+    //0 based indexing
     int left = 2*i+1;
     int right = 2*i+2;
     if(left <n && arr[smallest] > arr[left]){
