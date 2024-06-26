@@ -1,0 +1,16 @@
+TreeNode* solve(vector<int> &inorder, int start, int end){
+  //binary search
+        if(start > end){
+            return NULL;
+        }
+        int mid = (start + end)/2;
+        TreeNode* new_node = new TreeNode(inorder[mid]); 
+        new_node->left = solve(inorder, start, mid-1);
+        new_node->right = solve(inorder, mid+1, end);
+        return new_node;
+}
+
+TreeNode* convert(vector<int> &inorder){
+     int n = inorder.size();
+     return solve(inorder, 0, n-1);   
+}
