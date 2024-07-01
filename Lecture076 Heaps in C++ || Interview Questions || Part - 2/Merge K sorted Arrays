@@ -1,0 +1,20 @@
+https://www.naukri.com/code360/problems/merge-k-sorted-arrays_975379
+
+#include <bits/stdc++.h>
+
+vector<int> mergeKSortedArrays(vector<vector<int>> &arrays, int k) {
+  vector<int> ans;
+  priority_queue<int, vector<int>, greater<int>> q;
+  for (int i = 0; i < k; i++){
+    vector<int> ak = arrays[i];
+    for (auto it : ak) {
+      q.push(it);
+    }
+  }
+  while (q.size() > 0) {
+    int top = q.top();
+    q.pop();
+    ans.push_back(top);
+  }
+  return ans;
+}
