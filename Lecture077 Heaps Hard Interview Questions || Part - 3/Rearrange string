@@ -1,0 +1,113 @@
+https://www.naukri.com/code360/problems/rearrange-string_982765
+
+#include <bits/stdc++.h> 
+string reArrangeString(string &s)
+{
+	// Step 1 : Create a hash map to store the frequencies of all the chars of input string
+	unordered_map<char, int> freqHashMap;
+
+	// Step 2 : Initialize the ans string with the appropriate length before accessing its indices in step 3
+    string ans(s.length(), ' ');
+    
+	// Step 3 : Fill the map with all th characters frequencies
+	for(int i = 0; i < s.length(); i++){
+		// increment the char count
+		freqHashMap[s[i]]++;	
+	}
+
+	// Step 4 : Find out the max occuring char by checking the hash map
+	int max = 0; 
+	char letter;
+	for(auto it = freqHashMap.begin(); it != freqHashMap.end(); ++it) {
+		if(it->second > max){
+			max = it->second;
+			letter = it->first;
+		}
+	}
+
+	// Step 5 : Base case scenario one 
+	// no. of majority adjacent elements > length/2
+	if(max > (s.length() + 1)/2){
+		return "not possible";
+	}
+
+	// Else we come to Base case scenario two and three which states 
+	// no. of majority adjacent elements <= length/2
+
+    // Step 6 : Fill all even places with majority character
+	// So we can position each one of the majority element by leaving 1 char space and position the other chars
+	int i = 0;
+	while(freqHashMap[letter]-- > 0){
+		ans[i] = letter;
+		i += 2; // next adjacent position
+		// freqHashMap[letter]--;
+	}
+
+	// Step 7 : Fill the remaining characters 
+	for(auto& pair: freqHashMap){
+		while(pair.second-- > 0){
+
+			// i reaches the string end or surpasses it
+			if(i >= s.length()){
+				// reset the iterator to position 1 since it was left empty in step 6 and even indices were filled
+				i = 1;
+			}
+			
+			ans[i] = pair.first;
+			i += 2;
+			// pair.second--;
+		}
+	}
+	return ans;
+}
+
+                      *************************************************************************************************************************************
+
+#include <bits/stdc++.h>
+using namespace std;
+string reArrangeString(string &s) {   unordered_map<char, int> charFreq;
+    priority_queue<pair<int, char>> maxHeap;
+
+    // Count the frequency of each character
+    for (char c : s) 
+    {
+        charFreq[c]++;
+    }
+    // Fill the max heap with characters and their frequencies
+    for (auto it : charFreq) 
+    {
+        maxHeap.push({it.second, it.first});
+    }
+    string result = "";
+    // Construct the new string
+    while (!maxHeap.empty()) 
+    {
+        pair<int, char> first = maxHeap.top();
+        maxHeap.pop();
+        // If the result string is empty or the last appended character is different from the current character
+        if (result.empty() || result.back() != first.second) 
+        {
+            result += first.second;
+            if (--first.first > 0) 
+            {
+                maxHeap.push(first);
+            }
+        } 
+        else{
+            // If the last appended character is the same as the current character, get the next character from the heap
+            if (maxHeap.empty()) {
+                // If the heap is empty and there is still a character left to append, it's not possible
+                return "not possible";
+            }
+            pair<int, char> second = maxHeap.top();
+            maxHeap.pop();
+            result += second.second;
+            if (--second.first > 0) {
+                maxHeap.push(second);
+            }
+            // Put back the first character back into the heap
+            maxHeap.push(first);
+        }
+    }
+    return result;
+}
