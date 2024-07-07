@@ -5,13 +5,13 @@ using namespace std;
 class TrieNode{
     public:
     char data;
-    TrieNode* children[26];
-    bool isTerminal;
+    TrieNode* children[26];   //A to Z has 26 characters
+    bool isTerminal;    //to check whether a node is terminal or not
     
     TrieNode(char ch){
         data = ch;
         for(int i=0; i<26; i++){
-            children[i] = NULL;
+            children[i] = NULL;     //at start all childern are pointing to NULL
         }
         isTerminal = false;
     }
@@ -22,7 +22,7 @@ class Trie{
     TrieNode* root;
     
     Trie(){
-        root = new TrieNode('\0');
+        root = new TrieNode('\0');    //to avoid segmentation fault
     }
     
     void insertUtils(TrieNode* root, string word){
@@ -36,7 +36,7 @@ class Trie{
         int index = word[0] - 'A';
         TrieNode* child;
         
-        //if character is present
+        //if character is present 
         if(root->children[index] != NULL){
             child = root->children[index];
         }
@@ -47,7 +47,7 @@ class Trie{
         }
         
         //recursion
-        insertUtils(child, word.substr(1));
+        insertUtils(child, word.substr(1));   //first char ko chor kr aage wala word pass krdo
     }
     
     void insertWord(string word){
@@ -77,10 +77,54 @@ class Trie{
     void search(string word){
         return searchUtil(root, word);
     }
-    
-    
-    
-    
+ 
+     bool removeUtil(TrieNode* root, string word) {
+        // base case
+        if (word.length() == 0) {
+            if (root->isTerminal) {
+                root->isTerminal = false;
+
+                // Check if this node has any children
+                for (int i = 0; i < 26; i++) {
+                    if (root->children[i] != NULL) {
+                        return false;  // Node is part of another word
+                    }
+                }
+
+                return true;  // Node can be deleted
+            }
+            return false;  // Word not found
+        }
+
+        int index = word[0] - 'A';
+        TrieNode* child = root->children[index];
+
+        if (child == NULL) {
+            return false;  // Word not found
+        }
+
+        bool shouldDeleteChild = removeUtil(child, word.substr(1));
+
+        if (shouldDeleteChild) {
+            delete child;
+            root->children[index] = NULL;
+
+            // Check if root has any other children
+            for (int i = 0; i < 26; i++) {
+                if (root->children[i] != NULL) {
+                    return false;  // Node is part of another word
+                }
+            }
+
+            return !root->isTerminal;  // Return true if the root can be deleted
+        }
+
+        return false;
+    }
+
+    void removeWord(string word) {
+        removeUtil(root, word);
+    }
 };
 int main() {
     Trie *t = new Trie();
