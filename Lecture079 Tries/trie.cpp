@@ -49,7 +49,8 @@ class Trie{
         //recursion
         insertUtils(child, word.substr(1));   //first char ko chor kr aage wala word pass krdo
     }
-    
+
+    /** Inserts a word into the trie. */
     void insertWord(string word){
         insertUtils(root, word);
     }
@@ -73,7 +74,7 @@ class Trie{
     }
     return searchUtil(child, word.substr(1));
 }
-    
+    /** Returns if the word is in the trie. */
     void search(string word){
         return searchUtil(root, word);
     }
@@ -124,6 +125,30 @@ class Trie{
 
     void removeWord(string word) {
         removeUtil(root, word);
+    }
+
+    bool searchPrefix(TrieNode *root, string word) {
+    // base case
+    if (word.length() == 0) {
+      return true;
+    }
+
+    int index = word[0] - 'a';
+    TrieNode *child;
+
+    // if present
+    if (root->children[index] != NULL) {
+      child = root->children[index];
+    }
+    // if absent
+    else {
+      return false;
+    }
+    return searchPrefix(child, word.substr(1));
+  }
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    bool startsWith(string prefix) {
+        return searchPrefix(root, prefix);
     }
 };
 int main() {
