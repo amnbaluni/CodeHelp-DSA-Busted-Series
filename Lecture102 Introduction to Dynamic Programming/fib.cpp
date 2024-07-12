@@ -23,32 +23,37 @@ int main()
        int n;
        cin>>n;
        vector<int> dp(n+1, -1);
-//        for(int i=0; i<=n; i++){
-//                dp[i] = -1;
-//        }
+       for(int i=0; i<=n; i++){
+                dp[i] = -1;
+        }
       //step1
        cout<<fib(n,dp)<<endl;
 
        return 0;
 }
 
-TC = SC = O(n)
+TC = O(n)
+SC = O(n) + O(n)        
 
 //Using Tabulation Method (bottom up approach)
 int main()
 {
        int n;
        cin>>n;
+       //step 1 
        vector<int>dp(n+1);
+       //step 2 
        dp[0] = 0;
        dp[1] = 1;
-         
+       //step 3  
        for(int i=2; i<=n; i++){
                dp[i] = dp[i-1]+dp[i-2];
        }  
 
        cout<<dp[n]<<endl;
 }
+TC = O(n)
+SC = O(n)
 
 //Space Optimization
 int main()
@@ -57,6 +62,7 @@ int main()
        cin>>n;
        int prev1 = 1;
        int prev2 = 0;
+       if(n==0) return 0;   //edge case 
        for(int i=2; i<=n; i++){
                int curr = prev1 + prev2;
                //sift kr do
