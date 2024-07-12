@@ -1,0 +1,32 @@
+https://www.naukri.com/code360/problems/count-ways-to-reach-nth-stairs_798650
+
+#include <bits/stdc++.h>
+#define MOD 1000000007 
+int solve(int stairs, vector<int> &dp){
+    //base case
+   if(stairs == 1 || stairs == 0){
+       dp[stairs] = 1;
+   }
+    
+    //R.C
+    if(dp[stairs]!=0){
+        return dp[stairs];
+    }
+    return dp[stairs] = (solve(stairs-1, dp) 
+        + solve(stairs-2, dp));
+    
+}
+int countDistinctWays(int nStairs) {
+    // int prev1 = 1;
+    // int prev2 = 1;
+    // const int mod = 1e9+7;
+    // for(int i=2; i<=nStairs; i++){
+    //     int currentSedhi = (prev1+prev2)%mod;
+    //     prev2 = prev1;
+    //     prev1 = currentSedhi;
+    // }
+    // return prev1;
+    vector<int> dp(nStairs+1, 0);
+    int ans = solve(nStairs, dp);
+    return ans;
+}
