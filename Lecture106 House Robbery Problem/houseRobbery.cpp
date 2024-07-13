@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/house-robber_839733
+
 #include <bits/stdc++.h> 
 long long solve(vector<int>&nums, int stInd, int n){
     long long prev2 = 0;
