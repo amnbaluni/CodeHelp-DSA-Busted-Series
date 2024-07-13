@@ -5,7 +5,9 @@ long long solve(vector<int>&nums, int stInd, int n){
     long long prev2 = 0;
     long long prev1 = nums[stInd];
     for(int i=stInd+1; i<=n; i++){
-        long long ans = max(nums[i]+prev2, prev1);
+        long long include = prev2 + nums[i];
+        long long exclude = prev1 + 0;
+        long long ans = max(include, exclude);
         prev2 = prev1;
         prev1 = ans;
     }
