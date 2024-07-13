@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/minimum-elements_3843091
+
 #include <bits/stdc++.h> 
 int solveRecursion(vector<int> &num, int x){
     int n = num.size(); //size of array
