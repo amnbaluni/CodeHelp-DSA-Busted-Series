@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/ninja-and-the-fence_3210208
+
 Recursion  SC = O(1) TC = exp
 #include <bits/stdc++.h> 
 #define MOD 1000000007
@@ -113,4 +115,18 @@ int solveTabu(int n, int k){
 
 int numberOfWays(int n, int k) {
     return solveTabu(n,k);
+}
+
+**************************************************************************************************************
+More Simple Solution
+int numberOfWays(int n, int k) {
+    int dp[n+1];
+    int MOD = 1e9+7;
+    dp[0] = 0;
+    dp[1] = k;
+    dp[2] = k*k;
+    for(int i=3; i<=n; i++){
+        dp[i] = ((k-1)*(dp[i-2] + dp[i-1]))%MOD;
+    }
+    return dp[n];
 }
