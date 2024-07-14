@@ -39,9 +39,9 @@ int solveMemo(vector<int> &nums, int n, vector<int> &dp){
         return dp[n];
     }
     //include condition
-    int include = solve(nums, n-2) + nums[n];
+    int include = solveMemo(nums, n-2, dp) + nums[n];
     //exclude condition
-    int exclude = solve(nums, n-1) + 0;
+    int exclude = solveMemo(nums, n-1, dp) + 0;
 
     dp[n] = max(include, exclude); 
 
