@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/count-derangements_873861
+
 Recursion TC = exponential
 #define MOD 1000000007
 long long int countDerangements(int n) {
@@ -39,7 +41,7 @@ long long int countDerangements(int n) {
     return solveMemo(n,dp);
 }
 
-Recursion + Tabulation     TC = (N) SC = O(N)+O(N)
+Recursion + Tabulation     TC = (N) SC = O(N)
 #include <vector>
 #define MOD 1000000007
 long long int solveTabu(int n){
