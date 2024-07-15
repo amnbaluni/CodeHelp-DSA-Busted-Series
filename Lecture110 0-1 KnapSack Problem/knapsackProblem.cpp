@@ -130,7 +130,7 @@ int solveTabu(vector<int>& weight, vector<int>& value, int n, int capacity){
 	}
 
     //step3 : take care of remaining recursive calls
-	for(int index = 1; index<n; index++){
+	for(int index = 1; index<=n; index++){
 		for(int w=0; w<=capacity; w++){
 			int include = 0;
 			if(weight[index] <= w){
@@ -188,36 +188,4 @@ int solveTabu(vector<int>& weight, vector<int>& value, int n, int capacity){
 int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
 {
 	return solveTabu(weight, value, n-1, maxWeight);
-}
-
-//Traversing from left to right for capacity - here we need only two vectors -> curr & prev
-int solveTabu(vector<int>& weight, vector<int>& value, int n, int capacity){
-	//step1 : create curr and prev
-	vector<int> prev(capacity+1, 0);
-	vector<int> curr(capacity+1, 0);
-	
-	//step2 : analyze base cases
-	for(int w = weight[0]; w<=capacity; w++){
-		if(weight[0] <= capacity){
-           prev[w] = value[0];
-		}
-		else{
-			prev[w] = 0;
-		}
-	}
-
-    //step3 : take care of remaining recursive calls
-	for(int index = 1; index<=n; index++){
-		for(int w=0; w<=capacity; w++){
-			int include = 0;
-			if(weight[index] <= w){
-				include = value[index] + prev[w-weight[index]];
-			}
-
-			int exclude = 0 + prev[w];
-			curr[w] = max(include, exclude);
-		}
-		prev = curr;
-	}
-	return prev[capacity];
 }
