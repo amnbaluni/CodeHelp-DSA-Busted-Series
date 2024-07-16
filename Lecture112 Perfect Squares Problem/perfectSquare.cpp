@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/get-minimum-squares0538/1
+
 Recursion
 int solve(int n){
 	    //base case
