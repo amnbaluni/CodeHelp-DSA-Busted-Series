@@ -91,7 +91,7 @@ int minimumCoins(int n, vector<int> days, vector<int> cost) {
 }  
 
 
-Space Optimization  SC=O(1)
+Space Optimization  SC=O(1)  -  Sliding window
 int minimumCoins(int n, vector<int> days, vector<int> cost) {
   int ans = 0;
   //create queue for month and week
