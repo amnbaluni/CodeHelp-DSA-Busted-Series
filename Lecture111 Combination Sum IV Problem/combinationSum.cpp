@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/number-of-ways_3755252
+
 Recursion  TC = exp
 #include <bits/stdc++.h> 
 int solve(vector<int> &num, int tar){
