@@ -1,3 +1,5 @@
+https://www.naukri.com/code360/problems/minimum-coins_2180776
+
 Recursion  TC=exp
 int solve(int n, vector<int>& days, vector<int>& cost, int index){
     //base case
@@ -10,11 +12,11 @@ int solve(int n, vector<int>& days, vector<int>& cost, int index){
 
     int i;
     //7 day pass
-    for(i = index; i<n && days[i] < days[index] + 7; i++);
+    for(i = index; i<n && days[i] < days[index] + 7; i++);   //7 days ka pass lene ke baad at max kis din tak phuch skte hain
     int sevenDay = cost[1] + solve(n, days, cost, i);
 
     //30 days pass
-    for(i = index; i<n && days[i] < days[index] + 30; i++);
+    for(i = index; i<n && days[i] < days[index] + 30; i++);  //30 days ka pass lene ke baad at max kis din tak phuch skte hain
     int thirtyDay = cost[2] + solve(n, days, cost, i);
 
     //returning minimum of these three value
@@ -93,7 +95,7 @@ Space Optimization  SC=O(1)
 int minimumCoins(int n, vector<int> days, vector<int> cost) {
   int ans = 0;
   //create queue for month and week
-  queue<pair<int,int>> month;
+  queue<pair<int,int>> month;   // <day, cost till that day>
   queue<pair<int,int>> week;
 
   for(int day:days){
