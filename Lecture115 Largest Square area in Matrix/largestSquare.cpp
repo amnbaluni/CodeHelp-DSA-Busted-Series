@@ -1,17 +1,19 @@
+https://www.geeksforgeeks.org/problems/largest-square-formed-in-a-matrix0806/1
+
 Recursion
 int solve(vector<vector<int>> mat, int i, int j, int &maxi){
         //base case
-        if(i >= mat.size() || j >= mat.size()){
+        if(i >= mat.size() || j >= mat[0].size()){
             return 0;
         }
         
         //now I will have three choices
         int right = solve(mat, i, j+1, maxi);
-        int left = solve(mat, i+1, j, maxi);
+        int down = solve(mat, i+1, j, maxi);
         int diagonal = solve(mat, i+1, j+1, maxi);
         
         if(mat[i][j] == 1){
-            int ans = 1 + min(right, min(left, diagonal));
+            int ans = 1 + min(right, min(down, diagonal));
             maxi = max(maxi, ans);
             return ans;
         }
@@ -29,7 +31,7 @@ int solve(vector<vector<int>> mat, int i, int j, int &maxi){
 Recursion + Memo    TC=SC= O(n*m)
 int solveMemo(vector<vector<int>> &mat, int i, int j, int &maxi, vector<vector<int>>&dp){
         //base case
-        if(i >= mat.size() || j >= mat.size()){
+        if(i >= mat.size() || j >= mat[0].size()){
             return 0;
         }
         
@@ -38,11 +40,11 @@ int solveMemo(vector<vector<int>> &mat, int i, int j, int &maxi, vector<vector<i
         }
         //now I will have three choices
         int right = solveMemo(mat, i, j+1, maxi, dp);
-        int left = solveMemo(mat, i+1, j, maxi, dp);
+        int down = solveMemo(mat, i+1, j, maxi, dp);
         int diagonal = solveMemo(mat, i+1, j+1, maxi, dp);
         
         if(mat[i][j] == 1){
-            dp[i][j] = 1 + min(right, min(left, diagonal));
+            dp[i][j] = 1 + min(right, min(down, diagonal));
             maxi = max(maxi, dp[i][j]);
             return dp[i][j];
         }
@@ -68,11 +70,11 @@ int solveTabu(vector<vector<int>> &mat, int &maxi){
         for(int i=row-1; i>=0; i--){
             for(int j=col-1; j>=0; j--){
                 int right = dp[i][j+1];
-                int left = dp[i+1][j];
+                int down = dp[i+1][j];
                 int diagonal = dp[i+1][j+1];
         
                 if(mat[i][j] == 1){
-                   dp[i][j] = 1 + min(right, min(left, diagonal));
+                   dp[i][j] = 1 + min(right, min(down, diagonal));
                    maxi = max(maxi, dp[i][j]);
                 }
                 else{
@@ -99,11 +101,11 @@ int space_optimization(vector<vector<int>> &mat, int &maxi){
         for(int i=row-1; i>=0; i--){
             for(int j=col-1; j>=0; j--){
                 int right = curr[j+1];
-                int left = next[j];
+                int down = next[j];
                 int diagonal = next[j+1];
         
                 if(mat[i][j] == 1){
-                   curr[j] = 1 + min(right, min(left, diagonal));
+                   curr[j] = 1 + min(right, min(down, diagonal));
                    maxi = max(maxi, curr[j]);
                 }
                 else{
