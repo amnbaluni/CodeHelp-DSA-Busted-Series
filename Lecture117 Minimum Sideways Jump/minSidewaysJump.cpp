@@ -1,10 +1,13 @@
+https://leetcode.com/problems/minimum-sideway-jumps
+
 Recursion
 int solve(vector<int>& obstacles, int currLane, int currPos){
-        int n = obstacles.size();
+        int n = obstacles.size()-1;
         //base case -> if frog reaches at the end
         if(currPos == n){
             return 0;
         }
+        //first case
         if(obstacles[currPos + 1] != currLane){
             return solve(obstacles, currLane, currPos + 1);
         }
@@ -24,7 +27,7 @@ int solve(vector<int>& obstacles, int currLane, int currPos){
 
 Recursion + Memo SC=O(4*n)
 int solveMemo(vector<int>& obstacles, int currLane, int currPos, vector<vector<int>> &dp){
-        int n = obstacles.size();
+        int n = obstacles.size()-1;
         //base case -> if frog reaches at the end
         if(currPos == n){
             return 0;
