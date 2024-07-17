@@ -61,4 +61,19 @@ int solveTabu(vector<int>& v){
         return solveTabu(values);
     }
 
-
+If we have asked to find the number of triangle, then we can use catalan number formula.
+unsigned long int catalan(unsigned int n)
+{
+    // Base case
+    if (n <= 1)
+        return 1;
+ 
+    // catalan(n) is sum of
+    // catalan(i)*catalan(n-i-1)
+    unsigned long int res = 0;
+    for (int i = 0; i < n; i++)
+        res += catalan(i) * catalan(n - i - 1);
+ 
+    return res;
+}
+ 
