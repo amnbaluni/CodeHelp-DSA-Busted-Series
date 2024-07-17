@@ -1,6 +1,8 @@
+https://leetcode.com/problems/minimum-score-triangulation-of-polygon
+
 Recursion
 int solve(vector<int>& v, int i, int j){
-        //base case -> if first and last vertex of ploygon becomes adjacent
+        //base case -> if the first and last vertex of polygon becomes adjacent
         if(i+1 == j){
             return 0;
         }
@@ -12,7 +14,7 @@ int solve(vector<int>& v, int i, int j){
     }
     int minScoreTriangulation(vector<int>& values) {
         int n = values.size();
-        return solve(values, 0, n-1);
+        return solve(values, 0, n-1);   //initially -> i=0 & j=n-1
     }
 
 Recursion + Memo
