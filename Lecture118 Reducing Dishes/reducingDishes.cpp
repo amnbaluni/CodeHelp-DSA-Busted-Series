@@ -1,3 +1,5 @@
+https://leetcode.com/problems/reducing-dishes/description/
+
 Recursion
  int solve(vector<int>& satisfaction, int index, int time){
         //base case -> if index reached at end
