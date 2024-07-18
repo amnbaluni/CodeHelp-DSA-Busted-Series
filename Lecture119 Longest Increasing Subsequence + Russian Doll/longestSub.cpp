@@ -89,6 +89,7 @@ int solveTabu(int n, int a[]){
     }
 
 Optimal Solution   TC=O(n*log(n))  SC=O(n)
+// DP with Binary Search
 int solveOptimal(int n, int a[]){
         if(n==0){
             return 0;
