@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/longest-increasing-subsequence-1587115620/1
+
 Recursion
 int solveMemo(int n, int a[], int currIndex, int prevIndex){
         //base case
@@ -110,3 +112,17 @@ int solveOptimal(int n, int a[]){
     {  
        return solveOptimal(n, a);
     }
+
+********************* Using Binary Search ****************************
+int longestSubsequence(int n, int a[])
+{
+        vector<int> v;
+        for(int i=0;i<n;i++){
+            int index=lower_bound(v.begin(),v.end(),a[i])-v.begin();
+            if(index==v.size())
+                v.push_back(a[i]);
+            else
+                v[index]=a[i];
+        }
+        return(v.size());
+}
