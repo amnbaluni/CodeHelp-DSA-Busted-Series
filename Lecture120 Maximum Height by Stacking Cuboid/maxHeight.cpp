@@ -1,3 +1,5 @@
+https://leetcode.com/problems/maximum-height-by-stacking-cuboids/
+Use the Logic of Longest Increasing Subsequence
 TC = O(n*log(n))
 SC = O(1)
 
@@ -18,7 +20,7 @@ bool check(vector<int>base, vector<int> newBox){
                if(prev == -1 || check(a[curr], a[prev])){
                    take = a[curr][2] + nextRow[curr+1];
                }
-               int notTake = 0 + nextRow[curr+1];
+               int notTake = 0 + nextRow[prev+1];
                currRow[prev+1] = max(take, notTake);
             }
             nextRow = currRow;
@@ -26,7 +28,7 @@ bool check(vector<int>base, vector<int> newBox){
         return nextRow[0];
     }
     int maxHeight(vector<vector<int>>& cuboids) {
-        //step1 - sort all dimensions for all cuboid
+         //step1 - sort all dimensions for all cuboid
         for(auto &a : cuboids){
             sort(a.begin(), a.end());
         }
@@ -34,5 +36,4 @@ bool check(vector<int>base, vector<int> newBox){
         sort(cuboids.begin(), cuboids.end());
         //step3 - use LIS logic to find answer
         return solve(cuboids.size(), cuboids);
-         
     }
