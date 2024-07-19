@@ -1,0 +1,49 @@
+https://www.geeksforgeeks.org/problems/maximum-sum-increasing-subsequence4749/1
+
+Recursive - 
+class Solution{
+	public:
+	int solveMemo(int n, int arr[], int currIndex, int prevIndex){
+        //base case
+        if(currIndex == n){
+            return 0;
+        }
+        //include condition
+        int take = 0;
+        if(prevIndex == -1 || arr[currIndex]>arr[prevIndex]){
+            take = arr[currIndex] + solveMemo(n, arr, currIndex+1, currIndex);
+        }
+        //exclude condition
+        int notTake = 0 + solveMemo(n, arr, currIndex+1, prevIndex);
+        return max(take, notTake);
+    }
+	int maxSumIS(int arr[], int n)  
+	{  
+	   return solveMemo(n, arr, 0, -1);
+	}  
+};
+
+Memoization - 
+int solveMemo(int n, int arr[], int currIndex, int prevIndex, vector<vector<int>> &dp){
+        //base case
+        if(currIndex == n){
+            return 0;
+        }
+        if(dp[currIndex][prevIndex+1]!=-1){
+            return dp[currIndex][prevIndex+1];
+        }
+        //include condition
+        int take = 0;
+        if(prevIndex == -1 || arr[currIndex]>arr[prevIndex]){
+            take = arr[currIndex] + solveMemo(n, arr, currIndex+1, currIndex, dp);
+        }
+        //exclude condition
+        int notTake = 0 + solveMemo(n, arr, currIndex+1, prevIndex, dp);
+        return dp[currIndex][prevIndex + 1] = max(take, notTake);
+        
+    }
+	int maxSumIS(int arr[], int n)  
+	{  
+	   vector<vector<int>> dp(n, vector<int>(n+1, -1));
+	   return solveMemo(n, arr, 0, -1, dp);
+	}  
