@@ -1,3 +1,5 @@
+https://leetcode.com/problems/pizza-with-3n-slices/
+
 Recursion
 class Solution {
 public:
@@ -13,10 +15,10 @@ public:
 
     }
     int maxSizeSlices(vector<int>& slices) {
-    int k = slices.size();
-    int case1 = solve(slices, 0, k-2, k/3);
-    int case2 = solve(slices, 1, k-1, k/3);
-    return max(case1, case2);
+       int k = slices.size();
+       int case1 = solve(slices, 0, k-2, k/3);
+       int case2 = solve(slices, 1, k-1, k/3);
+       return max(case1, case2);
     }
 };
 
@@ -39,13 +41,13 @@ public:
 
     }
     int maxSizeSlices(vector<int>& slices) {
-    int k = slices.size();
-    vector<vector<int>> dp1(k, vector(k, -1));
-    int case1 = solveMemo(slices, 0, k-2, k/3, dp1);
+       int k = slices.size();
+       vector<vector<int>> dp1(k, vector(k, -1));
+       int case1 = solveMemo(slices, 0, k-2, k/3, dp1);
 
-    vector<vector<int>> dp2(k, vector(k, -1));
-    int case2 = solveMemo(slices, 1, k-1, k/3, dp2);
-    return max(case1, case2);
+       vector<vector<int>> dp2(k, vector(k, -1));
+       int case2 = solveMemo(slices, 1, k-1, k/3, dp2);
+       return max(case1, case2);
     }
 };  
 
@@ -81,7 +83,7 @@ public:
     }
 
     int maxSizeSlices(vector<int>& slices) {
-    return solveTabu(slices);
+       return solveTabu(slices);
     }
 };
 
