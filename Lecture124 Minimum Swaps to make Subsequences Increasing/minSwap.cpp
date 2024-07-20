@@ -1,3 +1,5 @@
+https://leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/
+
 Recursion
 int solve(vector<int>& nums1, vector<int>& nums2, int index, bool swapped){
         //base case
@@ -7,6 +9,7 @@ int solve(vector<int>& nums1, vector<int>& nums2, int index, bool swapped){
         int ans = INT_MAX;
         int prev1 = nums1[index-1];
         int prev2 = nums2[index-1];
+        //here is the main catch
         if(swapped){
             swap(prev1, prev2);
         }
@@ -114,6 +117,7 @@ int solveTabu(vector<int>& nums1, vector<int>& nums2){
 Space Optimization    SC = O(1)
 int solveTabu(vector<int>& nums1, vector<int>& nums2){
         int n = nums1.size();
+        //we need only 4 variables
         int swap = 0;
         int noswap = 0;
         int currswap = 0;
@@ -145,7 +149,7 @@ int solveTabu(vector<int>& nums1, vector<int>& nums2){
                    currnoswap = ans;
                }
             }
-            swap = currswap;
+            swap = currswap;    //neche se upar ki taraf jare hain
             noswap = currnoswap;
         }
         return min(swap, noswap);
