@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/subset-sum-problem2014/1
+Based on Knapsack Problem
 Recursion
 bool solve(int index, int arr[], int N, int target){
         //base case
@@ -22,7 +24,7 @@ bool solve(int index, int arr[], int N, int target){
             total = total + arr[i];
         }
         
-        if(total & 1){
+        if(total & 1){   //if total sum is odd then it is not possible to form two subsets having same sum
             return 0;
         }
         
@@ -73,6 +75,7 @@ bool solveMemo(int index, int arr[], int N, int target, vector<vector<int>> &dp)
 Recursion + Tabu   SC=O(N*target)
 bool solveTabu(int N, int arr[], int t){
         vector<vector<int>> dp(N+1, vector<int>(t + 1, 0));
+        //first column ke andar 1 store hoga
         for(int i=0; i<=N; i++){
             dp[i][0] = 1;
         }
