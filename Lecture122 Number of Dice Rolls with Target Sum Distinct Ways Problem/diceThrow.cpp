@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/dice-throw5349/1
+
 Recursion
     long long solve(int dice , int faces , int target){
         //base case1
@@ -93,7 +95,7 @@ long long solveTabu(int d , int f , int t){
         vector<long long> prev(t+1, 0);
         
         //after analyzing base case
-        prev[0] = 1; 
+        prev[0] = 1;   //prev row
         
         for(int dice = 1; dice <= d; dice++){
             for(int target = 1; target <= t; target++){
@@ -105,7 +107,7 @@ long long solveTabu(int d , int f , int t){
                 }
                 curr[target] = ans;
             }
-            prev = curr;
+            prev = curr;  //upar se neche ki taraf jare hain
         }
         return curr[t]; 
     }
