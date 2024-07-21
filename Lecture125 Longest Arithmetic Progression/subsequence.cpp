@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/longest-arithmetic-progression1019/1
+
 Recursion
 int solve(int index, int diff, int A[]){
         //backward check
