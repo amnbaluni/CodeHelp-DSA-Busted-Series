@@ -8,7 +8,7 @@ Algorithm
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(int n)
+int solve(int n)   //Iterative Solution -> TC = exponential
 {
     // Base case
     if (n <= 1)
@@ -44,3 +44,17 @@ int main()
 Output
 The first 8 Catalan Numbers are: 1 1 2 5 14 42 132 429 
 
+//Recursive Solution
+double ncr(int n, int r) {
+        if (r == 0) {
+            return 1;
+        }
+        if (r == n) {
+            return 1;
+        }
+
+        return (n * ncr(n - 1, r - 1)) / r;
+    }
+int findCatalan(int n){
+   return ncr(2*n, n)/(n+1);
+}
