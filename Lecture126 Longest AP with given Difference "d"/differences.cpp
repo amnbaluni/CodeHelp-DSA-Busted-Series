@@ -1,3 +1,5 @@
+https://leetcode.com/problems/longest-arithmetic-subsequence-of-given-difference/description/
+
 Just update code from Lecture - 125
 class Solution {
 public:
