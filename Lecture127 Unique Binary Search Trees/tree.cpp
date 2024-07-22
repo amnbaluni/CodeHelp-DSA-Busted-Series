@@ -75,3 +75,18 @@ other question is - Intersection Chords in a Circle problem
     int numTrees(int n) { 
         return ncr(2 * n, n) / (n + 1); 
     }
+
+   int numTrees(int n) {   //iterative
+        // Base case
+        if (n <= 1)
+            return 1;
+
+        int nthCatalan = 0;
+
+        // Applying the formula to find out the nth catalan number
+        for (int i = 0; i < n; i++) {
+            nthCatalan += numTrees(i) * numTrees(n - i - 1);
+        }
+
+        return nthCatalan;
+    }
