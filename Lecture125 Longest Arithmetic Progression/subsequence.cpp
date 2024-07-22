@@ -1,4 +1,5 @@
 https://www.geeksforgeeks.org/problems/longest-arithmetic-progression1019/1
+https://leetcode.com/problems/longest-arithmetic-subsequence/
 
 Recursion
 int solve(int index, int diff, int A[]){
@@ -69,7 +70,7 @@ int solveMemo(int index, int diff, int A[], unordered_map<int, int> dp[]){
     }  
 
 
-Recursion + Tabu
+Recursion + Tabu   TC = O(n*n)   SC = (n*n)
   int lengthOfLongestAP(int A[], int n) {
         //if A[] contains only 1 or 2 elemetns
         if(n <= 2){
@@ -93,3 +94,26 @@ Recursion + Tabu
         }
         return ans;
     }
+
+Space Optimization - TC = O(n*n)   SC = (n)
+int lengthOfLongestAP(int A[], int n) {
+    if(n<=2)
+        return n;
+        
+    int ans=1;
+    unordered_set<int>dp(A,A+n);
+        
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+           int len=2;
+           int diff=A[j]-A[i];
+           int curr=2*A[j]-A[i];
+           while(dp.find(curr)!=dp.end()){
+                len++;
+                curr=curr+diff;
+           }
+           ans=max(ans,len);
+        }
+     }
+     return ans;
+}
