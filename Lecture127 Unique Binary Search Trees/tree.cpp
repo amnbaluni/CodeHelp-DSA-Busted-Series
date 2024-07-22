@@ -1,3 +1,5 @@
+https://leetcode.com/problems/unique-binary-search-trees/
+
 The formula is represented by f(n) = ∑[ f(i-1) * f(n-i) ]
 
 Recursion
@@ -59,3 +61,17 @@ int solveTabu(int n){
 Space Optimization => This question can be solved using Catalan Number in O(1) Space Complexity. Catalan number series will give you exactly same ans for n.
 You simply need to print Catalan number for a given number of nodes
 other question is - Intersection Chords in a Circle problem
+
+    double ncr(int n, int r) {
+        if (r == 0){
+            return 1;
+        }
+        if (r == n){
+            return 1;
+        }
+
+        return (n * ncr(n - 1, r - 1)) / r;
+    }
+    int numTrees(int n) { 
+        return ncr(2 * n, n) / (n + 1); 
+    }
