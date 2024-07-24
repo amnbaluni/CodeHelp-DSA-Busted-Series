@@ -1,3 +1,7 @@
+Inspired from Longest Common Subsequence
+
+https://leetcode.com/problems/longest-palindromic-subsequence/
+
 int solveTabu(string text1, string text2){
         int n1 = text1.length();
         int n2 = text2.length();
