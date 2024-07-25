@@ -1,4 +1,6 @@
-TC = O(nlogn) + O(n*k)
+https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1
+
+TC = O(nlogn) + O(n*k) [k = max deadline]
 
 struct Job 
 { 
