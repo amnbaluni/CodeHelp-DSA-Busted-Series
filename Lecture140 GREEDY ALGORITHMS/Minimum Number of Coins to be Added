@@ -1,0 +1,25 @@
+https://leetcode.com/problems/minimum-number-of-coins-to-be-added
+
+class Solution {
+public:
+    int minimumAddedCoins(vector<int>& coins, int target) {
+        long long  int prefSum = 0;
+        int n = coins.size();
+        int num_of_coins = 0;
+        int i = 0;
+        sort(coins.begin(), coins.end());
+        for(int t=1; t<=target; t++){
+            if(i<n && coins[i] <= t){
+                prefSum += coins[i];
+                i++;
+            }
+            else{
+                //coins[i] > t
+                if(prefSum >= t) continue;
+                prefSum += t;
+                num_of_coins++;
+            }
+        }
+        return num_of_coins;
+    }
+};
