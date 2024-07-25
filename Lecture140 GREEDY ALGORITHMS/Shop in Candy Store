@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/shop-in-candy-store1145/1
+
 TC = O(nlog(n))
 SC = O(1)
 
