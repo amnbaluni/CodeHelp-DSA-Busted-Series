@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/check-if-it-is-possible-to-survive-on-island4922/1
+
 class Solution{
 public:
     int minimumDays(int S, int N, int M){
