@@ -16,6 +16,7 @@ string reverseWords(string S)
                 temp.push_back(S[i]);
             }
         }
+        //to handle character at 0th index
         reverse(temp.begin(), temp.end());
         ans = ans + temp;
         return ans;
