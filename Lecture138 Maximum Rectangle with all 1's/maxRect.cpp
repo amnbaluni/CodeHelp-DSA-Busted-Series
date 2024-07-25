@@ -1,3 +1,5 @@
+https://leetcode.com/problems/maximal-rectangle/description/
+
 Refer question - Largest Area in Histogram  (Lecture 56)
 
 TC = O(n*(m+n))
