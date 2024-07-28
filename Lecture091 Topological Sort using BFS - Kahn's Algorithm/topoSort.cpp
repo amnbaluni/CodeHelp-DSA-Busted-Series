@@ -17,7 +17,8 @@ vector<int> topologicalSort(vector<vector<int>> &edges, int v, int e)  {
     //find all indegree
     vector<int> indegree(v);
     for(auto i:adj){
-      for(auto j:i.second){
+      list<int> neighbours = i.second;	    
+      for(auto j : neighbours){
         indegree[j]++;
       }
     }
