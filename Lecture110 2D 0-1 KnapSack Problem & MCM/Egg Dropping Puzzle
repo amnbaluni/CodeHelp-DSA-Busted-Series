@@ -1,0 +1,76 @@
+https://www.geeksforgeeks.org/problems/egg-dropping-puzzle-1587115620/1
+
+   int solveMemo(int eggs, int floors, vector<vector<int>>& dp){
+        //base case
+        if(eggs == 1){
+            return floors;
+        }
+        if(floors == 0 || floors == 1){
+            return floors;
+        }
+        if(dp[eggs][floors] != -1){
+            return dp[eggs][floors];
+        }
+        int mini = INT_MAX;
+        for(int k=1; k<=floors; k++){
+            int first_case = solveMemo(eggs-1, k-1, dp);   //break wala case
+            int second_case = solveMemo(eggs, floors - k, dp);   //not break wala case
+            int ans = 1 + max(first_case, second_case);
+            mini = min(mini, ans);
+        }
+        return dp[eggs][floors] = mini;
+    }
+    
+    int solveTabu(int eggs, int floors){
+        vector<vector<int>> dp(eggs+1, vector<int>(floors+1, 0));
+        for(int i=1; i<=floors; i++){
+            dp[1][i] = i;   //worst case mein jitne floors hain utne hi attemps lgenege
+        }
+        for(int i=1; i<=eggs; i++){
+            dp[i][1] = 1;  //agar ek hi floor hai to ek hi attemps lagega
+        }
+        for(int i=2; i<=eggs; i++){
+            for(int j=2; j<=floors; j++){
+                int mini = INT_MAX;
+                for(int k=1; k<=j; k++){
+                    int first_case = dp[i-1][k-1];   //break wala case
+                    int second_case = dp[i][j-k];   //not break wala case
+                    int ans = 1 + max(first_case, second_case);
+                    mini = min(mini, ans);
+                }
+                dp[i][j] = mini;
+            }
+        }
+        return dp[eggs][floors];
+    }
+    
+    int spaceOpti(int eggs, int floors){
+        vector<int> prev(floors+1, 0);
+        vector<int> curr(floors+1, 0);
+        for(int i=0; i<=floors; i++){
+            prev[i] = i;  
+        }
+        curr[0] = 0;
+        curr[1] = 1;
+        for(int i=2; i<=eggs; i++){
+            for(int j=2; j<=floors; j++){
+                int mini = INT_MAX;
+                for(int k=1; k<=j; k++){
+                    int first_case = prev[k-1];   //break wala case
+                    int second_case = curr[j-k];   //not break wala case
+                    int ans = 1 + max(first_case, second_case);
+                    mini = min(mini, ans);
+                }
+                curr[j] = mini;
+            }
+        }
+        return prev[floors];
+    }
+    
+    int eggDrop(int n, int k) 
+    {  
+        // vector<vector<int>> dp(n+1, vector<int>(k+1, -1));
+        // return solveMemo(n, k, dp);
+        // return solveTabu(n, k);
+        return spaceOpti(n, k);
+    }
