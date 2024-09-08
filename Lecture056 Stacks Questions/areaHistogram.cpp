@@ -1,3 +1,5 @@
+https://leetcode.com/problems/largest-rectangle-in-histogram/
+
 class Solution {
 private:
     vector<int> nextSmallerElement(vector<int> arr, int n) {
