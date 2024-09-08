@@ -11,7 +11,8 @@ vector<string> solve(string &str, string &empty, int len, int index){
 	//pick wala case
 	empty = empty + str[index];
 	solve(str, empty, len, index+1);
-	empty.pop_back();
+	empty.pop_back();   //backtrack
+        //non pick wala case
 	solve(str, empty, len, index+1);
 	ans.push_back(empty);
 	return ans;
