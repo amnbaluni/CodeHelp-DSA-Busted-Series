@@ -2,11 +2,11 @@
 using namespace std;
 void bubbleSort(vector<int>& arr, int n)
 {   
-    for(int i = 1; i<n; i++) {
+    for(int i = 0; i<n-1; i++) {
         //for round 1 to n-1
         bool swapped = false;
         
-        for(int j =0; j<n-i; j++) {
+        for(int j =0; j<n-i-1; j++) {
             
             //process element till n-i th index
             if(arr[j] > arr[j+1]) {
