@@ -33,3 +33,33 @@ vector<vector<int>> findTriplets(vector<int>arr, int n, int K) {
     }
     return ans;
 }
+
+ ---------------------------------------------------------
+https://leetcode.com/problems/3sum
+ 
+ vector<vector<int>> threeSum(vector<int>& nums) {
+        int target = 0;
+        sort(nums.begin(), nums.end());
+        set<vector<int>> s;
+        vector<vector<int>> output;
+        for (int i = 0; i < nums.size(); i++){
+            int low = i + 1;
+            int high = nums.size() - 1;
+            while (low < high) {
+                int sum = nums[i] + nums[low] + nums[high];
+                if (sum == target) {
+                    s.insert({nums[i], nums[low], nums[high]});
+                    low++;
+                    high--;
+                } else if (sum < target) {
+                    low++;
+                } else {
+                    high--;
+                }
+            }
+        }
+        for(auto triplets : s)
+            output.push_back(triplets);
+        return output;
+    }
+ 
