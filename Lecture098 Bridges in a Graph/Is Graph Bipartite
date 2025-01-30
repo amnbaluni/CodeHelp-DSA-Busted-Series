@@ -1,0 +1,77 @@
+https://leetcode.com/problems/is-graph-bipartite/description/
+
+How to know if a Ques is of Bipartite - if there is a mention of dividing/grouping a graph into 2 parts having different properties
+
+//if graph contains cycle of odd length -> graph is not Bipartite
+//if graph contains cycle of even length -> graph is Bipartite
+
+class Solution {
+public:
+    bool DFS(vector<vector<int>>& graph, vector<int>& color, int curr_node, int curr_color) {
+        color[curr_node] = curr_color;
+
+        for (auto& v : graph[curr_node]) {
+            if (color[v] == color[curr_node]) {
+                return false;
+            } else if (color[v] == -1) {
+                if (DFS(graph, color, v, 1 - curr_color) == false)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> color(n, -1); // color 0 or 1, -1 means no color
+        for (int i = 0; i < n; i++) {
+            if (color[i] == -1) {
+                if (DFS(graph, color, i, 0) == false)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+};
+
+// if graph contains cycle of odd length -> graph is not Bipartite
+// if graph contains cycle of even length -> graph is Bipartite
+
+class Solution {
+public:
+    bool BFS(vector<vector<int>>& graph, vector<int>& color, int curr_node, int curr_color) {
+        queue<int> q;
+        q.push(curr_node);
+        color[curr_node] = curr_color;
+
+        while (!q.empty()) {
+            int u = q.front();
+            q.pop();
+            for (auto& v : graph[u]) {
+                if (color[v] == color[u]) { // Compare with color[u]
+                    return false;
+                } else if (color[v] == -1) {
+                    // update the color
+                    color[v] = 1 - color[u]; // Use color[u] to determine the new color
+                    q.push(v);
+                }
+            }
+        }
+
+        return true;
+    }
+
+    bool isBipartite(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector<int> color(n, -1); // color 0 or 1, -1 means no color
+        for (int i = 0; i < n; i++) {
+            if (color[i] == -1) {
+                if (BFS(graph, color, i, 0) == false)
+                    return false;
+            }
+        }
+
+        return true;
+    }
+};
